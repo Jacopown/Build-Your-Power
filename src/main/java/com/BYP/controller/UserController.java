@@ -1,9 +1,14 @@
-package com.BYP.BYP;
+package com.BYP.controller;
 
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+
+import com.BYP.entity.User;
+import com.BYP.repository.UserRepository;
 
 @Controller
 public class UserController {
@@ -36,7 +41,16 @@ public class UserController {
     return "addUser";
   }
 
-  // getting user info
-  /*I@GetMapping("/users/{id}")
-  public */
+  // getting user info (querying by id)
+  // TODO
+  /*@GetMapping("/users/{id}")
+  public ResponseEntity<User> getById(@PathVariable Integer id) {
+    User user = this.userRepository.findById(id);
+    if (user != null) {
+      return new ResponseEntity<>(user, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+  }*/
 }
