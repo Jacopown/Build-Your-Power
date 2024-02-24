@@ -35,4 +35,8 @@ public class UserController {
   public String addUserForm() {
     return "addUser";
   }
+
+  // getting user info
+  /*I@GetMapping("/users/{id}")
+  public */
 }
