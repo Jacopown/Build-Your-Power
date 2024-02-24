@@ -28,11 +28,11 @@ public class UserController {
 	userRepository.save(user);
 
 	//return the page where it says "User added successfully"
-    	return "userAdded.html"; // this is only a temporary solution
+    	return "userAdded"; // this is only a temporary solution
   }
 
   @RequestMapping("/addUserForm")
   public String addUserForm() {
-    return "addUser.html";
+    return "addUser";
   }
 }
