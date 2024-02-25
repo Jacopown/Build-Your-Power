@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.ModelAndView;
+import java.util.NoSuchElementException;
 
 import com.BYP.entity.User;
 import com.BYP.repository.UserRepository;
@@ -42,15 +44,22 @@ public class UserController {
   }
 
   // getting user info (querying by id)
-  // TODO
-  /*@GetMapping("/users/{id}")
-  public ResponseEntity<User> getById(@PathVariable Integer id) {
-    User user = this.userRepository.findById(id);
-    if (user != null) {
-      return new ResponseEntity<>(user, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  @GetMapping("/users/{id}")
+  public ModelAndView getById(@PathVariable Integer id) {
+    try {
+      // getting user by id
+      User user = userRepository.findById(id).get();
+      //generating the view for the data
+      ModelAndView mav = new ModelAndView();
+      mav.setViewName("userView");
+      mav.addObject("user", user);
+      return mav;
+    } catch (NoSuchElementException e) {
+      //throws an error if the user is not found
+      ModelAndView mav = new ModelAndView();
+      mav.setViewName("genericError");
+      mav.addObject("error", "User not found");
+      return mav;
     }
-    
-  }*/
+  }
 }

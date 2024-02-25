@@ -1,0 +1,16 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<table>
+	<tr>
+		<td>Username:</td>
+		<td><span th:text="${user.username}"></span></td>
+	</tr>
+	<tr>
+		<td>Email:</td>
+		<td><span th:text="${user.email}"></span></td>
+	</tr>
+	<tr>
+		<td>Is Super User:</td>
+		<td><span th:text="${user.isSuperUser}"></span></td>
+	</tr>
+</table>
+</html>
