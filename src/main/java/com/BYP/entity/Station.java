@@ -28,5 +28,9 @@ public class Station {
     return this.location;
   }
 
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
 }
 
