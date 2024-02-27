@@ -39,13 +39,20 @@ public class Battery {
   public BatteryStatus getStatus() {
     return this.status;
   }
-  
+
+  public void setStatus(BatteryStatus status) {
+    this.status = status;
+  } 
   public Station getStation() {
     return this.station;
   }
 
   public Float getVoltage() {
     return this.voltage;
+  }
+
+  public void setVoltage(Float voltage) {
+    this.voltage = voltage;
   }
 
   public Float getTemperature() {
