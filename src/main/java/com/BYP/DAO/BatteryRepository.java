@@ -8,11 +8,12 @@ import jakarta.persistence.PersistenceContext;
 import java.util.Optional;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 
-
+@Repository
 public class BatteryRepository implements daoInterface<Battery>{
 	
 	@PersistenceContext
