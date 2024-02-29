@@ -15,9 +15,12 @@ public class Battery {
     DAMAGED,
     UNREACHABLE
   }
-  private BatteryStatus status;
-  @OneToOne
+  //adding relation between battery and station
+  @ManyToOne
+  @JoinColumn(name = "station_id")
   private Station station;
+
+  private BatteryStatus status;
   private Float voltage;
   private Float temperature;
   
