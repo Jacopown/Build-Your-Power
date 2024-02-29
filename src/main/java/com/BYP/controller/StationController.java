@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import com.BYP.entity.Station;
-import com.BYP.repository.StationRepository;
+import com.BYP.DAO.StationRepository;
 
 @Controller
 public class StationController {
@@ -20,14 +20,14 @@ public class StationController {
   }
 
   @GetMapping("/stations")
-  public Iterable<Station> findAllStations() {
-    return stationRepository.findAll();
+  public Iterable<Station> getAllStations() {
+    return stationRepository.getAll();
   }
 
-  @PostMapping("/stations")
-  public Station addOneEmployee(@RequestBody Station station) {
+  /*@PostMapping("/stations")
+  public Station addOneEmployee(@ModelAttribute Station station) {
     return stationRepository.save(station);
-  }
+  }*/
 }
 
 

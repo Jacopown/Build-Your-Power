@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.NoSuchElementException;
 
 import com.BYP.entity.User;
-import com.BYP.repository.UserRepository;
+import com.BYP.DAO.UserRepository;
 
 @Controller
 public class UserController {

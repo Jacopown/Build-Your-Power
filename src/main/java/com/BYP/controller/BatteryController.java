@@ -1,12 +1,9 @@
 package com.BYP.controller;
 
-import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.BYP.entity.Battery;
-import com.BYP.repository.BatteryRepository;
+import com.BYP.DAO.BatteryRepository;
 
 @Controller
 public class BatteryController {
