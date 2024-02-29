@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Station Table </title>
+	</head>
+	<body>
+		<div class = "row col-md-10">
+			<h2> List of Stations </h2>	
+		</div>
+		<table class = "table table-bordered table-hover">
+			<thead class = "table-dark">
+				<tr>
+					<th> Station ID </th>
+					<th> Station Location </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each = "station : ${stations}">
+					<td th:text = "${station.id}"></td>
+					<td th:text = "${station.location}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -48,7 +48,7 @@ public class UserController {
   public ModelAndView getById(@PathVariable Integer id) {
     try {
       // getting user by id
-      User user = userRepository.findById(id).get();
+      User user = userRepository.getByID(id).get();
       //generating the view for the data
       ModelAndView mav = new ModelAndView();
       mav.setViewName("userView");
