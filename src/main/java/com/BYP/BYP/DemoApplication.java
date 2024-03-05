@@ -41,6 +41,14 @@ public class DemoApplication {
 		  batteryRepository.save(battery1);
 		  batteryRepository.save(battery2);
 		  batteryRepository.save(battery3);
+
+		  //creating random behaviour for batteries
+		  int numberOfActions = 5; // represent the number of times the single battery will change its status
+		  long delay = 10000; // which is 10 seconds
+		  BatteryService batteryService = new BatteryService(batteryRepository);
+		  batteryService.performRandomActionsWithDelay(battery1, numberOfActions, delay);
+		  batteryService.performRandomActionsWithDelay(battery2, numberOfActions, delay);
+		  batteryService.performRandomActionsWithDelay(battery3, numberOfActions, delay);
 	  };
   }
 

@@ -22,7 +22,7 @@ public class BatteryService {
 	}
 
 	// creating random behaviour for batteries
-	public void performRandomActionsWithDelay(Battery battery, int maxIterations, Long delay) { // delay is a value expressed in milliseconds
+	public void performRandomActionsWithDelay(Battery battery, int maxIterations, long delay) { // delay is a value expressed in milliseconds
 		for (int i = 0; i < maxIterations; i++) {
 			performRandomAction(battery);
 			sleep(delay);
@@ -37,10 +37,10 @@ public class BatteryService {
 		//TODO must be added messaging system (convert and send)
 		switch(randomAction) {
 			case 0:
-				batteryRepository.update(battery, new String[]{"AVALIABLE"});
+				batteryRepository.update(battery, new String[]{"AVAILABLE"});
 				break;
 			case 1:
-				batteryRepository.update(battery, new String[]{"UNAVALIABLE"});
+				batteryRepository.update(battery, new String[]{"UNAVAILABLE"});
 				break;
 			case 2:
 				batteryRepository.update(battery, new String[]{"DAMAGED"});
@@ -51,7 +51,7 @@ public class BatteryService {
 		}
 	}
 
-	private void sleep(Long delay) {
+	private void sleep(long delay) {
 		try {
 			Thread.sleep(delay);
 		} catch (InterruptedException e) {
