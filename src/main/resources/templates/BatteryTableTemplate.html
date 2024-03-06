@@ -1,6 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title> Battery Table </title>
+		<script src = "https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+		<script src = "https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	</head>
 	<body>
 		<div class = "row col-mid-10">
@@ -26,5 +28,17 @@
 				</tr>
 			</tbody>
 		</table>
+		<script>
+			var socket = new SockJS('/ws');
+			var stompClient = Stomp.over(socket);
+
+			stompClient.connect({}, function(frame) {
+				stompClient.subscribe('/topic/batteryStatus', function(message) {
+					if(message.body == 'reload') {
+						location.reload();
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

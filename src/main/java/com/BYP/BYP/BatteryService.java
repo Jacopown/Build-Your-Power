@@ -7,18 +7,20 @@ import com.BYP.DAO.BatteryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @Service
 public class BatteryService {
 
-	//TODO add messaging template for convert and send later
 	private final BatteryRepository batteryRepository;
+	private final SimpMessagingTemplate simpMessagingTemplate;
 
 	private final Random random = new Random();
 
 	@Autowired
-	public BatteryService(BatteryRepository batteryRepository) {
+	public BatteryService(BatteryRepository batteryRepository, SimpMessagingTemplate simpMessagingTemplate) {
 		this.batteryRepository = batteryRepository;
+		this.simpMessagingTemplate = simpMessagingTemplate;
 	}
 
 	// creating random behaviour for batteries
@@ -34,21 +36,29 @@ public class BatteryService {
 		int amountOfStatuses = 3;
 		int randomAction = random.nextInt(amountOfStatuses);
 
-		//TODO must be added messaging system (convert and send)
 		switch(randomAction) {
 			case 0:
-				batteryRepository.update(battery, new String[]{"AVAILABLE"});
+				batteryRepository.update(battery, new String[]{"AVAILABLE"});		
+				// send a message to the client which reloads the battery status
+				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 			case 1:
-				batteryRepository.update(battery, new String[]{"UNAVAILABLE"});
+				batteryRepository.update(battery, new String[]{"UNAVAILABLE"});	
+				// send a message to the client which reloads the battery status
+				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 			case 2:
 				batteryRepository.update(battery, new String[]{"DAMAGED"});
+				// send a message to the client which reloads the battery status
+				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 			case 3:
 				batteryRepository.update(battery, new String[]{"UNREACHABLE"});
+				// send a message to the client which reloads the battery status
+				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 		}
+
 	}
 
 	private void sleep(long delay) {

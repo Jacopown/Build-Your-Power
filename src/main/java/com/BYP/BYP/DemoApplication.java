@@ -1,5 +1,6 @@
 package com.BYP.BYP;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,12 +14,16 @@ import com.BYP.entity.Station;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @SpringBootApplication
 @ComponentScan("com.BYP")
 @EntityScan("com.BYP.entity")
 @EnableJpaRepositories("com.BYP.repository")
 public class DemoApplication {
+
+  @Autowired
+  SimpMessagingTemplate simpMessagingTemplate;
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
@@ -45,11 +50,11 @@ public class DemoApplication {
 		  //creating random behaviour for batteries
 		  int numberOfActions = 5; // represent the number of times the single battery will change its status
 		  long delay = 10000; // which is 10 seconds
-		  BatteryService batteryService = new BatteryService(batteryRepository);
+		  BatteryService batteryService = new BatteryService(batteryRepository, simpMessagingTemplate);
 		  batteryService.performRandomActionsWithDelay(battery1, numberOfActions, delay);
 		  batteryService.performRandomActionsWithDelay(battery2, numberOfActions, delay);
 		  batteryService.performRandomActionsWithDelay(battery3, numberOfActions, delay);
-	  };
+	 };
   }
 
 }
