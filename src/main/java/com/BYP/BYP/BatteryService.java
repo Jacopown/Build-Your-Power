@@ -38,26 +38,20 @@ public class BatteryService {
 
 		switch(randomAction) {
 			case 0:
-				batteryRepository.update(battery, new String[]{"AVAILABLE"});		
-				// send a message to the client which reloads the battery status
-				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
+				batteryRepository.update(battery, new String[]{"AVAILABLE"});	
 				break;
 			case 1:
 				batteryRepository.update(battery, new String[]{"UNAVAILABLE"});	
-				// send a message to the client which reloads the battery status
-				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 			case 2:
 				batteryRepository.update(battery, new String[]{"DAMAGED"});
-				// send a message to the client which reloads the battery status
-				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 			case 3:
 				batteryRepository.update(battery, new String[]{"UNREACHABLE"});
-				// send a message to the client which reloads the battery status
-				simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 				break;
 		}
+		// send a message to the client which reloads the battery status
+		simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");
 
 	}
 
