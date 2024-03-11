@@ -20,6 +20,10 @@ public class Battery {
   @JoinColumn(name = "station_id")
   private Station station;
 
+  @OneToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+
   private BatteryStatus status;
   private Float voltage;
   private Float temperature;
@@ -62,6 +66,24 @@ public class Battery {
   public Float getTemperature() {
     return this.temperature;
   }
+  
+  public void setTemperature(Float temperature) {
+    this.temperature = temperature;
+  }
 
+  public User getUser() {
+    return this.user;
+  }
+
+  //overloading the updateAssign method to update the battery's assignation
+  public void updateAssign(User user) {
+    this.user = user;
+    this.station = null;
+  }
+
+  public void updateAssign(Station station) {
+    this.station = station;
+    this.user = null;
+  }
 }
 

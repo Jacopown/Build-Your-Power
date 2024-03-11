@@ -26,6 +26,7 @@ public class User {
     this.username = username;
     this.email = email;
     this.isSuperUser = isSuperUser;
+    this.battery = null;
   }
 
   public Integer getId() {
