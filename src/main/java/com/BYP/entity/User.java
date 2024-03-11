@@ -12,6 +12,10 @@ public class User {
   private String username;
   private String email;
   private Boolean isSuperUser;
+
+  @OneToOne
+  @JoinColumn(name = "battery_id")
+  private Battery battery;
   
   
   // Hibernate expects entities to have a no-arg constructor,

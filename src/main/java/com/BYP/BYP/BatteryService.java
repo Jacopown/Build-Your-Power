@@ -27,6 +27,7 @@ public class BatteryService {
 	public void performRandomActionsWithDelay(Battery battery, int maxIterations, long delay) { // delay is a value expressed in milliseconds
 		for (int i = 0; i < maxIterations; i++) {
 			performRandomAction(battery);
+			//TODO perform random behaviour like switching between station and user
 			sleep(delay);
 		}
 	}
@@ -47,6 +48,7 @@ public class BatteryService {
 				batteryRepository.update(battery, new String[]{"DAMAGED"});
 				break;
 			case 3:
+				//TODO add check if battery is associated to a user
 				batteryRepository.update(battery, new String[]{"UNREACHABLE"});
 				break;
 		}
