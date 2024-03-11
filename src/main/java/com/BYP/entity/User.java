@@ -60,5 +60,16 @@ public class User {
     this.isSuperUser = isSuperUser;
   }
 
+  public Battery getBattery() {
+    return this.battery;
+  }
+
+  public void assignBattery(Battery battery) {
+    this.battery = battery;
+  }
+
+  public void removeBattery() {
+    this.battery = null;
+  }
 }
 
