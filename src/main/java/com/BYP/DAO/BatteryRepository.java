@@ -13,6 +13,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Objects;
 
+import com.BYP.entity.Station;
+import com.BYP.entity.User;
+
 @Repository
 public class BatteryRepository implements daoInterface<Battery>{
 	
@@ -47,5 +50,18 @@ public class BatteryRepository implements daoInterface<Battery>{
 	@Transactional
 	public void delete(Battery battery) {
 		entityManager.remove(battery);
+	}
+
+	//switching between station and user
+	@Transactional
+	public void switchAssignment(Battery battery, User user) {
+		battery.updateAssign(user);
+		entityManager.merge(battery);
+	}
+
+	@Transactional
+	public void switchAssignment(Battery battery, Station station) {
+		battery.updateAssign(station);
+		entityManager.merge(battery);
 	}
 }
