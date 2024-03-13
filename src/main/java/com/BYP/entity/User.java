@@ -30,7 +30,7 @@ public class User {
   
   // Hibernate expects entities to have a no-arg constructor,
   // though it does not necessarily have to be public.
-  private User() {}
+  public User() {}
   
   public User(String username, String email, String lastName, Boolean isSuperUser) {
     this.username = username;
