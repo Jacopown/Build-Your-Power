@@ -32,10 +32,13 @@ public class User {
   // though it does not necessarily have to be public.
   public User() {}
   
-  public User(String username, String email, String lastName, Boolean isSuperUser) {
+  public User(String username, String email, String password, String firstName, String lastName) {
     this.username = username;
     this.email = email;
-    this.isSuperUser = isSuperUser;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.isSuperUser = false;
   }
 
   public Long getId() {
@@ -78,7 +81,7 @@ public class User {
     this.firstName = firstName;
   }
 
-  public String lastName() {
+  public String getLastName() {
     return this.lastName;
   }
 

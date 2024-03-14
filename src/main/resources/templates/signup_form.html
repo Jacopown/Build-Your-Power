@@ -12,28 +12,27 @@
         <form th:action="@{/signup}" th:object="${user}" method="post">
             <div>
               <label for="email">Email:</label>
-              <!-- <input type="email" id="email" th:field="*{email}" required minlength="11" maxlength="45" /> -->
-              <input type="email" id="email" required minlength="11" maxlength="45" />
+              <input type="email" id="email" th:field="*{email}" required minlength="11" maxlength="45" />
             </div>
-            <!-- <div> -->
-            <!--   <label for="username">Email:</label> -->
-            <!--   <input type="text" id="username" th:field="*{username}" required minlength="2" maxlength="20" /> -->
-            <!-- </div> -->
-            <!-- <div> -->
-            <!--   <label for="password">Password:</label> -->
-            <!--   <input type="password" id="password" th:field="*{password}" required minlength="10" maxlength="64" /> -->
-            <!-- </div> -->
-            <!-- <div> -->
-            <!--   <label for="firstName">First Name:</label> -->
-            <!--   <input type="text" id="firstName" th:field="*{firstName}" required minlength="2" maxlength="20" /> -->
-            <!-- </div> -->
-            <!-- <div> -->
-            <!--   <label for="lastName">Last Name:</label> -->
-            <!--   <input type="text" id="lastName" th:field="*{lastName}" required minlength="2" maxlength="20" /> -->
-            <!-- </div> -->
-            <!-- <div> -->
-            <!--   <button type="submit">Sign Up</button> -->
-            <!-- </div> -->
+            <div>
+              <label for="username">Username:</label>
+              <input type="text" id="username" th:field="*{username}" required minlength="2" maxlength="20" />
+            </div>
+            <div>
+              <label for="password">Password:</label>
+              <input type="password" id="password" th:field="*{password}" required minlength="10" maxlength="64" />
+            </div>
+            <div>
+              <label for="firstName">First Name:</label>
+              <input type="text" id="firstName" th:field="*{firstName}" required minlength="2" maxlength="20" />
+            </div>
+            <div>
+              <label for="lastName">Last Name:</label>
+              <input type="text" id="lastName" th:field="*{lastName}" required minlength="2" maxlength="20" />
+            </div>
+            <div>
+              <button type="submit">Sign Up</button>
+            </div>
         </form>
       </div>
   </body>

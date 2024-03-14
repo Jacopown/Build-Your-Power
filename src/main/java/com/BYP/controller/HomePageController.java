@@ -27,7 +27,7 @@ public class HomePageController {
 
 	@GetMapping("/register")
 	public String showSignUpForm(Model model) {
-		// model.addAttribute("user", new User());
+		model.addAttribute("user", new User());
 		return "signup_form";
 	}
 
