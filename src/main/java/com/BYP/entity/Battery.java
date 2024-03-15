@@ -38,6 +38,7 @@ public class Battery {
     this.station = station;
     this.voltage = voltage;
     this.temperature = temperature;
+    this.user = null;
   }
 
   public Integer getId() {

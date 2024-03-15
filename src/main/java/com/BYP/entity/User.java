@@ -13,10 +13,6 @@ public class User {
   private String email;
   private Boolean isSuperUser;
 
-  @OneToOne
-  @JoinColumn(name = "battery_id")
-  private Battery battery;
-  
   
   // Hibernate expects entities to have a no-arg constructor,
   // though it does not necessarily have to be public.
@@ -26,7 +22,6 @@ public class User {
     this.username = username;
     this.email = email;
     this.isSuperUser = isSuperUser;
-    this.battery = null;
   }
 
   public Integer getId() {
@@ -59,18 +54,6 @@ public class User {
 
   public void setIsSuperUser(Boolean isSuperUser) {
     this.isSuperUser = isSuperUser;
-  }
-
-  public Battery getBattery() {
-    return this.battery;
-  }
-
-  public void assignBattery(Battery battery) {
-    this.battery = battery;
-  }
-
-  public void removeBattery() {
-    this.battery = null;
   }
 }
 
