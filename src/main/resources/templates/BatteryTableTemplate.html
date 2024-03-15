@@ -11,10 +11,10 @@
 			<thead class = "table-dark">
 				<tr>
 					<th> Battery ID </th>
-					<th> Battery Battery status </th>
+					<th> Battery status </th>
 					<th> Battery voltage </th>
 					<th> Battery temperature </th>
-					<th> Station ID </th>
+					<th> Assignment </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +23,10 @@
 					<td th:text = "${battery.status}"></td>
 					<td th:text = "${battery.voltage}"></td>
 					<td th:text = "${battery.temperature}"></td>
-					<td th:text = "${battery.station.id}"></td>
+					<td>
+						<div th:if = "${battery.station != null}" th:text = "${battery.station.location}"></div>
+						<div th:if = "${battery.user != null}" th:text = "${battery.user.username}"></div>
+					</td>
 				</tr>
 			</tbody>
 		</table>

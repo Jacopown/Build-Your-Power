@@ -9,8 +9,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.BYP.DAO.BatteryRepository;
 import com.BYP.DAO.StationRepository;
+import com.BYP.DAO.UserRepository;
 import com.BYP.entity.Battery;
 import com.BYP.entity.Station;
+import com.BYP.entity.User;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,7 +33,7 @@ public class DemoApplication {
 
   //creating automatic entities
   @Bean
-  public CommandLineRunner demo(StationRepository stationRepository, BatteryRepository batteryRepository) {
+  public CommandLineRunner demo(StationRepository stationRepository, BatteryRepository batteryRepository, UserRepository userRepository) {
 	  return(args) -> {
 		  //creating stations
 		  Station station1 = new Station("First Floor");
@@ -47,13 +49,19 @@ public class DemoApplication {
 		  batteryRepository.save(battery2);
 		  batteryRepository.save(battery3);
 
+		  //creating random users
+		  User user1 = new User("user1", "user1.name@mail.com", false);
+		  User user2 = new User("user2", "user2.name@mail.com", false);
+		  userRepository.save(user1);
+		  userRepository.save(user2);
+
 		  //creating random behaviour for batteries
 		  int numberOfActions = 5; // represent the number of times the single battery will change its status
 		  long delay = 10000; // which is 10 seconds
 		  BatteryService batteryService = new BatteryService(batteryRepository, simpMessagingTemplate);
-		  batteryService.performRandomActionsWithDelay(battery1, numberOfActions, delay);
-		  batteryService.performRandomActionsWithDelay(battery2, numberOfActions, delay);
-		  batteryService.performRandomActionsWithDelay(battery3, numberOfActions, delay);
+		  batteryService.performRandomActionsWithDelay(battery1, numberOfActions, delay, userRepository.getAll(), stationRepository.getAll());
+		  batteryService.performRandomActionsWithDelay(battery2, numberOfActions, delay, userRepository.getAll(), stationRepository.getAll());
+		  batteryService.performRandomActionsWithDelay(battery3, numberOfActions, delay, userRepository.getAll(), stationRepository.getAll());
 	 };
   }
 
