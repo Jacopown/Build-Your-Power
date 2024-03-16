@@ -55,14 +55,14 @@ public class BatteryRepository implements daoInterface<Battery>{
 	//switching between station and user
 	//battery assignment
 	@Transactional
-	public void switchAssignment(Battery battery, User user) {//FIXME assignments eliminations
+	public void switchAssignment(Battery battery, User user) {
 		battery.updateAssign(user);
 		entityManager.merge(battery);
 	}
 
 	//station assignment
 	@Transactional
-	public void switchAssignment(Battery battery, Station station) {//FIXME assignments eliminations
+	public void switchAssignment(Battery battery, Station station) {
 		battery.updateAssign(station);
 		entityManager.merge(battery);
 	}

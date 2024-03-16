@@ -71,7 +71,6 @@ public class BatteryService {
 	}
 
 	private void performRandomAssignment(Battery battery, List<User> users, List<Station> stations) {// assignment
-		//TODO maybe add the a check for all batteries in order to avoid the same user to be assigned to multiple batteries
 		int typesOfAssigns = 1; //which are are station and user
 		int randomAction = random.nextInt(typesOfAssigns);
 		switch(randomAction) {
@@ -98,7 +97,7 @@ public class BatteryService {
 	public boolean isAlreadyAssignedToUser(List<Battery> batteries, User user) {
 		for (Battery battery : batteries) {
 			//System.out.println(battery.getUser());
-			if (battery.getUser() != null && battery.getUser().getId() == user.getId()) {// FIXME it never goes through this if statement
+			if (battery.getUser() != null && battery.getUser().getId() == user.getId()) {
 				return true;
 			}
 		}
