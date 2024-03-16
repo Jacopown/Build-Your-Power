@@ -29,15 +29,12 @@ public class BatteryService {
 	// creating random behaviour for batteries
 	public void performRandomActionsWithDelay(Battery battery, int maxIterations, long delay, List<User> users, List<Station> stations) { // delay is a value expressed in milliseconds
 		for (int i = 0; i < maxIterations; i++) {
-			int userIndex = performRandomAction(battery, users, stations);
+			performRandomAction(battery, users, stations);
 			sleep(delay);
-			if (!users.isEmpty() && userIndex != -1) {
-				users.remove(userIndex);
-			}
 		}
 	}
 
-	private int performRandomAction(Battery battery, List<User> users, List<Station> stations) {
+	private void performRandomAction(Battery battery, List<User> users, List<Station> stations) {
 
 		int amountOfStatuses = 3;
 		int randomAction = random.nextInt(amountOfStatuses);
@@ -59,12 +56,10 @@ public class BatteryService {
 				break;
 		}
 		// performing random assignment
-		int userIndex = performRandomAssignment(battery, users, stations);// assignment
+		performRandomAssignment(battery, users, stations);// assignment
 
 		// send a message to the client which reloads the battery status
 		simpMessagingTemplate.convertAndSend("/topic/batteryStatus", "reload");		
-
-		return userIndex;
 	}
 
 	private void sleep(long delay) {
@@ -75,20 +70,20 @@ public class BatteryService {
 		}
 	}
 
-	private int performRandomAssignment(Battery battery, List<User> users, List<Station> stations) {// assignment
+	private void performRandomAssignment(Battery battery, List<User> users, List<Station> stations) {// assignment
 		//TODO maybe add the a check for all batteries in order to avoid the same user to be assigned to multiple batteries
 		int typesOfAssigns = 1; //which are are station and user
 		int randomAction = random.nextInt(typesOfAssigns);
-		int randomUser = -1;
 		switch(randomAction) {
 			case 0:// assigning random user
 			        if(!users.isEmpty()) {
 				        int itemsInUsers = users.size();				
-					randomUser = random.nextInt(itemsInUsers);
-					if (battery.getUser() == null || battery.getUser() != users.get(randomUser)) {
+					int randomUser = random.nextInt(itemsInUsers);
+					if (!isAlreadyAssignedToUser(battery, batteryRepository.getAll(), users.get(randomUser))) {
 						batteryRepository.switchAssignment(battery, users.get(randomUser));
 						break;
 					}
+					break;
 				}
 				break;
 			case 1:// assigning random station
@@ -97,6 +92,15 @@ public class BatteryService {
 				batteryRepository.switchAssignment(battery, stations.get(randomStation));//assigning random station
 				break;
 		}
-		return randomUser;
+	}
+
+	// defining a method that check if a battery is already assigned to a user
+	public boolean isAlreadyAssignedToUser(Battery currentBattery, List<Battery> batteries, User user) {
+		for (Battery battery : batteries) {
+			if (battery.getUser() != null && battery.getUser().equals(user) && currentBattery != battery) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
