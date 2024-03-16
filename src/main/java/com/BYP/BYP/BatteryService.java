@@ -79,7 +79,7 @@ public class BatteryService {
 			        if(!users.isEmpty()) {
 				        int itemsInUsers = users.size();				
 					int randomUser = random.nextInt(itemsInUsers);
-					if (!isAlreadyAssignedToUser(battery, batteryRepository.getAll(), users.get(randomUser))) {
+					if (!isAlreadyAssignedToUser(batteryRepository.getAll(), users.get(randomUser))) {
 						batteryRepository.switchAssignment(battery, users.get(randomUser));
 						break;
 					}
@@ -95,9 +95,10 @@ public class BatteryService {
 	}
 
 	// defining a method that check if a battery is already assigned to a user
-	public boolean isAlreadyAssignedToUser(Battery currentBattery, List<Battery> batteries, User user) {
+	public boolean isAlreadyAssignedToUser(List<Battery> batteries, User user) {
 		for (Battery battery : batteries) {
-			if (battery.getUser() != null && battery.getUser().equals(user) && currentBattery != battery) {
+			//System.out.println(battery.getUser());
+			if (battery.getUser() != null && battery.getUser().getId() == user.getId()) {// FIXME it never goes through this if statement
 				return true;
 			}
 		}
