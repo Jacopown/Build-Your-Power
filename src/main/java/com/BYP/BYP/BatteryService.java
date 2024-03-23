@@ -7,6 +7,7 @@ import com.BYP.entity.Battery;
 import com.BYP.DAO.BatteryRepository;
 import com.BYP.entity.Station;
 import com.BYP.entity.User;
+import com.BYP.BYP.EmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,11 @@ public class BatteryService {
 				break;
 			case 3:
 				// the battery can become unreachable only if it has a user
-				if (battery.getUser() != null)
+				if (battery.getUser() != null){
 					batteryRepository.update(battery, new String[]{"UNREACHABLE"});
+					EmailService emailService = new EmailService();
+					emailService.sendEmail("aligiassioma72@gmail.com", battery.getId() + " is unreachable", "The battery is unreachable");
+				}
 				break;
 		}
 		// performing random assignment

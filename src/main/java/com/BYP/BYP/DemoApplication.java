@@ -13,6 +13,7 @@ import com.BYP.DAO.UserRepository;
 import com.BYP.entity.Battery;
 import com.BYP.entity.Station;
 import com.BYP.entity.User;
+import com.BYP.BYP.EmailService;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,6 +27,9 @@ public class DemoApplication {
 
   @Autowired
   SimpMessagingTemplate simpMessagingTemplate;
+
+  @Autowired
+  EmailService emailService;
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
@@ -56,6 +60,7 @@ public class DemoApplication {
 		  userRepository.save(user2);
 
 		  //creating random behaviour for batteries
+		  //emailService.sendEmail("mail@gmail.com", battery1.getId() + " is unreachable", "The battery is unreachable");
 		  int numberOfActions = 5; // represent the number of times the single battery will change its status
 		  long delay = 10000; // which is 10 seconds
 		  BatteryService batteryService = new BatteryService(batteryRepository, simpMessagingTemplate);
