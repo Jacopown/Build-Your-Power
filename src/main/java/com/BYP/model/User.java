@@ -1,4 +1,4 @@
-package com.BYP.entity;
+package com.BYP.model;
 import jakarta.persistence.*;
 
 
@@ -12,9 +12,6 @@ public class User {
 
   @Column(nullable = false, unique = true, length = 45)
   private String email;
-
-  @Column(nullable = false, unique = true, length = 20)
-  private String username;
 
   @Column(nullable = false, length = 64)
   private String password;
@@ -32,8 +29,7 @@ public class User {
   // though it does not necessarily have to be public.
   public User() {}
   
-  public User(String username, String email, String password, String firstName, String lastName) {
-    this.username = username;
+  public User(String email, String password, String firstName, String lastName) {
     this.email = email;
     this.password = password;
     this.firstName = firstName;
@@ -57,16 +53,9 @@ public class User {
     this.email = email;
   }
 
-  public String getUsername() {
-    return this.username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
 
   public String getPassword() {
-    return this.username;
+    return this.password;
   }
 
   public void setPassword(String password) {
