@@ -2,7 +2,7 @@ package com.BYP.BYP;
 
 import java.util.Random;
 
-import com.BYP.entity.Battery;
+import com.BYP.model.Battery;
 import com.BYP.DAO.BatteryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

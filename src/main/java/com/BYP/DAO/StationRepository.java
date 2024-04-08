@@ -2,7 +2,7 @@ package com.BYP.DAO;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.BYP.entity.Station;
+import com.BYP.model.Station;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
