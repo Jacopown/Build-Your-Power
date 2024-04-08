@@ -1,9 +1,10 @@
 package com.BYP.DAO;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Objects;
 
-import com.BYP.entity.User;
+import com.BYP.model.User;
 
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.EntityManager;
@@ -27,6 +28,10 @@ public class UserRepository implements daoInterface<User>{
 		return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
 	}
 
+  public Optional<User> findByEmail(String email) {
+      return Optional.ofNullable((User)entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email").setParameter("email", email).getSingleResult());
+    }
+
 	@Override
 	@Transactional
 	public void save(User user) {
@@ -36,7 +41,6 @@ public class UserRepository implements daoInterface<User>{
 	@Override
 	@Transactional
 	public void update(User user, String[] params) {
-		user.setUsername(Objects.requireNonNull(params[0], "Username cannot be null"));
 		user.setEmail(Objects.requireNonNull(params[1], "Email cannot be null"));
 		user.setIsSuperUser(Objects.requireNonNull(Boolean.parseBoolean(params[2])));
 		entityManager.merge(user);
@@ -47,4 +51,6 @@ public class UserRepository implements daoInterface<User>{
 	public void delete(User user) {
 		entityManager.remove(user);
 	}
+
+
 }
