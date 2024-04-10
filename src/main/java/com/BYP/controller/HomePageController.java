@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.BYP.DAO.UserRepository;
 
@@ -21,12 +22,12 @@ public class HomePageController {
 	String appName;
 
 	@GetMapping("")
-	public String homePage(Model model) {
-		return "home";
+	public String showHomepage(Model model) {
+		return "homepage";
 	}
 
-  @GetMapping("/register")
-  public String showRegistrationForm(Model model) {
+  @GetMapping("/signup")
+  public String showSignup(Model model) {
       model.addAttribute("user", new User());
       return "signup_form";
   }
@@ -40,19 +41,14 @@ public class HomePageController {
        
       return "registration_success";
   }
+
+  @GetMapping("/userHomepage")
+  public String showUserHomepage(Model model) {
+      return "user_homepage";
+  }
+
   @PostMapping("/user_view")
   public String showUserView(Model model){
-    return "user_view";
+    return "home";
   } 
-	// @GetMapping("/register")
-	// public String showSignUpForm(Model model) {
-	// 	model.addAttribute("user", new User());
-	// 	return "signup_form";
-	// }
-	//
- //  @PostMapping("/signup")
- //  public String submitSignUpForm(User user) {
- //    userRepository.save(user);
- //    return "registration_success";
- //  }
 }
