@@ -37,12 +37,12 @@ public class WebSecurityConfig   {
         http.authenticationProvider(authenticationProvider());
          
         http.authorizeHttpRequests(auth ->
-            auth.requestMatchers("/user_view").authenticated()
+            auth.requestMatchers("/userHomepage").authenticated()
             .anyRequest().permitAll()
             )
             .formLogin(login ->
                 login.usernameParameter("email")
-                .defaultSuccessUrl("/user_view")
+                .defaultSuccessUrl("/userHomepage")
                 .permitAll()
             )
             .logout(logout -> logout.logoutSuccessUrl("/").permitAll()
