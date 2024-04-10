@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.NoSuchElementException;
 
-import com.BYP.entity.User;
+import com.BYP.model.User;
 import com.BYP.DAO.UserRepository;
 
 @Controller

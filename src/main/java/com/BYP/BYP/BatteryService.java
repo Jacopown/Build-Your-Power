@@ -3,7 +3,7 @@ package com.BYP.BYP;
 import java.util.Random;
 import java.util.List;
 
-import com.BYP.entity.Battery;
+import com.BYP.model.Battery;
 import com.BYP.DAO.BatteryRepository;
 import com.BYP.entity.Station;
 import com.BYP.entity.User;

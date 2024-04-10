@@ -1,7 +1,7 @@
 package com.BYP.DAO;
 
-import com.BYP.entity.Battery;
-import com.BYP.entity.Battery.BatteryStatus;
+import com.BYP.model.Battery;
+import com.BYP.model.Battery.BatteryStatus;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

@@ -1,4 +1,4 @@
-package com.BYP.entity;
+package com.BYP.model;
 
 import jakarta.persistence.*;
 

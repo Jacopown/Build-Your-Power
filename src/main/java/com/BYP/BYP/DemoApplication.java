@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.BYP.DAO.BatteryRepository;
 import com.BYP.DAO.StationRepository;
 import com.BYP.DAO.UserRepository;
-import com.BYP.entity.Battery;
-import com.BYP.entity.Station;
-import com.BYP.entity.User;
+import com.BYP.model.Battery;
+import com.BYP.model.Station;
+import com.BYP.model.User;
 import com.BYP.BYP.EmailService;
 
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @SpringBootApplication
 @ComponentScan("com.BYP")
-@EntityScan("com.BYP.entity")
+@EntityScan("com.BYP.model")
 @EnableJpaRepositories("com.BYP.repository")
 public class DemoApplication {
 
@@ -69,5 +69,4 @@ public class DemoApplication {
 		  batteryService.performRandomActionsWithDelay(battery3, numberOfActions, delay, userRepository.getAll(), stationRepository.getAll());
 	 };
   }
-
 }

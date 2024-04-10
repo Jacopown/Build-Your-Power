@@ -1,4 +1,6 @@
-package com.BYP.entity;
+package com.BYP.model;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 
