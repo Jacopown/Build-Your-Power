@@ -53,12 +53,6 @@ public class DemoApplication {
 		  batteryRepository.save(battery2);
 		  batteryRepository.save(battery3);
 
-		  //creating random users
-		  User user1 = new User("user1", "user1.name@mail.com", false);
-		  User user2 = new User("user2", "user2.name@mail.com", false);
-		  userRepository.save(user1);
-		  userRepository.save(user2);
-
 		  //creating random behaviour for batteries
 		  //emailService.sendEmail("mail@gmail.com", battery1.getId() + " is unreachable", "The battery is unreachable");
 		  int numberOfActions = 5; // represent the number of times the single battery will change its status
