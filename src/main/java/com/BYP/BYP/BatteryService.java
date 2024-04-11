@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.BYP.model.Battery;
 import com.BYP.DAO.BatteryRepository;
-import com.BYP.entity.Station;
-import com.BYP.entity.User;
+import com.BYP.model.Station;
+import com.BYP.model.User;
 import com.BYP.BYP.EmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
