@@ -2,19 +2,20 @@ package com.BYP.DAO;
 
 import com.BYP.model.Battery;
 import com.BYP.model.Battery.BatteryStatus;
+import com.BYP.model.Station;
+import com.BYP.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+
 import java.util.Optional;
+import java.util.Objects;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Objects;
 
-import com.BYP.entity.Station;
-import com.BYP.entity.User;
 
 @Repository
 public class BatteryRepository implements daoInterface<Battery>{
