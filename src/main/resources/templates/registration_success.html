@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Spring Boot App</title>
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <title>BYP - Registration complete</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" />
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <style>
+    .hero {
+      background-image: url("[path-to-your-image]"); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff; /* Change to your brand color for text */
+    }
+  </style>
 </head>
-  <body>
-      <div class="container text-center">
-          <h3>You have signed up successfully!</h3>
-          <h4><a th:href="@{/login}">Click here to Login</a></h4>
-      </div>
-       
-  </body>
+<body>
+  <div class="container-fluid hero">
+    <i class="fas fa-check fa-3x"></i> <h1>Registration Complete!</h1>
+  </div>
+  <div class="container text-center mt-5">
+    <h4>Welcome to BYP! You can now log in to your account.</h4>
+    <a th:href="@{/login}" class="btn btn-primary">Login</a>
+  </div>
+</body>
 </html>
