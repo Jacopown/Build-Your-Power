@@ -42,7 +42,6 @@ public class UserRepository implements daoInterface<User>{
 	@Transactional
 	public void update(User user, String[] params) {
 		user.setEmail(Objects.requireNonNull(params[1], "Email cannot be null"));
-		user.setIsSuperUser(Objects.requireNonNull(Boolean.parseBoolean(params[2])));
 		entityManager.merge(user);
 	}
 
@@ -51,6 +50,19 @@ public class UserRepository implements daoInterface<User>{
 	public void delete(User user) {
 		entityManager.remove(user);
 	}
+
+  public boolean existsByEmail(String email) {
+    Object result = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.email = :email")
+      .setParameter("email", email)
+      .getSingleResult();
+    // Check if the result is indeed a Long (recommended for more general cases)
+    if (result instanceof Long) {
+      return (Long) result != 0L;
+    } else {
+      // Handle unexpected result type (unlikely in this case, but good practice)
+      throw new IllegalStateException("Unexpected result type from query: " + result.getClass());
+    }
+  }
 
 
 }

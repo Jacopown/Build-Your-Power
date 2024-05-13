@@ -8,39 +8,46 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.NoSuchElementException;
+import org.springframework.ui.Model;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.BYP.model.User;
+import com.BYP.Role;
 import com.BYP.DAO.UserRepository;
+import com.BYP.DAO.RoleRepository;
 
 @Controller
 public class UserController {
 
   private final UserRepository userRepository;
+  private final RoleRepository roleRepository;
 
   @Autowired // for automatic dependency injection (reduces the need for getters and setters)
-  public UserController(UserRepository userRepository) {
+  public UserController(UserRepository userRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
+    this.roleRepository = roleRepository;
   }
 
-  /*@GetMapping("/users")
-  public Iterable<User> findAllUsers() {
-    return this.userRepository.findAll();
-  }*/
-
-  // creating a new user using a form
-  @RequestMapping(value = "/addUser", method = RequestMethod.POST) // note: value represents the URL path
-  public String addUser(@ModelAttribute User user) {
-    
-	//save the user into the database
-	userRepository.save(user);
-
-	//return the page where it says "User added successfully"
-    	return "userAdded"; // this is only a temporary solution
+  @GetMapping("/signup")
+  public String showSignup(Model model) {
+      model.addAttribute("user", new User());
+      return "signup_form";
   }
 
-  @RequestMapping("/addUserForm")
-  public String addUserForm() {
-    return "addUser";
+  @PostMapping("/process_register")
+  public String processRegister(User user) {
+      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+      String encodedPassword = passwordEncoder.encode(user.getPassword());
+      Role userRole = roleRepository.findByName("ROLE_USER").get();
+      user.setPassword(encodedPassword);
+      user.setRole(userRole);
+      userRepository.save(user);
+      return "registration_success";
+  }
+
+  @PostMapping("/userView")
+  public String userView() {
+    return "pippo";
   }
 
   // getting user info (querying by id)

@@ -21,7 +21,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @SpringBootApplication
 @ComponentScan("com.BYP")
-@EntityScan("com.BYP.model")
+@EntityScan(basePackages = {"com.BYP.model", "com.BYP"})
 @EnableJpaRepositories("com.BYP.repository")
 public class DemoApplication {
 

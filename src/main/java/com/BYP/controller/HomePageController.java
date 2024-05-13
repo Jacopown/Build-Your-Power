@@ -26,22 +26,6 @@ public class HomePageController {
 		return "homepage";
 	}
 
-  @GetMapping("/signup")
-  public String showSignup(Model model) {
-      model.addAttribute("user", new User());
-      return "signup_form";
-  }
-  @PostMapping("/process_register")
-  public String processRegister(User user) {
-      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-      String encodedPassword = passwordEncoder.encode(user.getPassword());
-      user.setPassword(encodedPassword);
-       
-      userRepository.save(user);
-       
-      return "registration_success";
-  }
-
   @GetMapping("/userHomepage")
   public String showUserHomepage(Model model) {
       return "user_homepage";

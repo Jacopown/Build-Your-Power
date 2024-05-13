@@ -35,22 +35,21 @@
         <button class="btn btn-primary me-2" onclick="showOS()">Scan</button>
         <div class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" id="userProfileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user"></i> 
+            <i class="fas fa-user"></i>
             <span th:text="${#authentication.principal.name}"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userProfileDropdown">
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li th:if="${#authentication.principal.isSuperUser}">
-              <a class="dropdown-item" href="#">Admin</a>
-            </li>
+            <li th:if="${#authorization.authorize(#this, 'hasRole(''USER_ROLE'')')}">
+              <a class="dropdown-item" href="#">Admin</a>  </li>
             <li>
               <form th:action="@{/logout}" method="post">
-                  <button class="btn btn-danger" type="submit">Logout</button>
+                <button class="btn btn-danger" type="submit">Logout</button>
               </form>
             </li>
           </ul>
-        </div>
+        </div>      
       </div>
     </div>
   </nav>
