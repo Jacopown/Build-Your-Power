@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.NoSuchElementException;
 import org.springframework.ui.Model;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.BYP.model.User;
@@ -44,10 +45,15 @@ public class UserController {
       userRepository.save(user);
       return "registration_success";
   }
-
-  @PostMapping("/userView")
-  public String userView() {
-    return "pippo";
+  
+  //TODO customize
+  @RequestMapping("/userView")
+  public ModelAndView userView(@AuthenticationPrincipal User user) {
+    System.out.println(user.getEmail());//FIXME: user is null
+    ModelAndView mav = new ModelAndView();	  
+    mav.setViewName("userView");
+    mav.addObject("user", user);
+    return mav;
   }
 
   // getting user info (querying by id)
