@@ -10,12 +10,15 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.NoSuchElementException;
 import org.springframework.ui.Model;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.BYP.model.User;
 import com.BYP.Role;
 import com.BYP.DAO.UserRepository;
 import com.BYP.DAO.RoleRepository;
+
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -46,14 +49,17 @@ public class UserController {
       return "registration_success";
   }
   
-  //TODO customize
-  @RequestMapping("/userView")
-  public ModelAndView userView(@AuthenticationPrincipal User user) {
-    System.out.println(user.getEmail());//FIXME: user is null
-    ModelAndView mav = new ModelAndView();	  
-    mav.setViewName("userView");
-    mav.addObject("user", user);
-    return mav;
+  @GetMapping("/userView")
+  public String userView(Model model, Principal principal) {
+    String email = principal.getName();
+    User user = userRepository.findByEmail(email).get();
+    model.addAttribute("user", user);
+    return "userView";
+  }
+
+  @GetMapping("/login")
+  public String login() {
+    return "login_form";
   }
 
   // getting user info (querying by id)
