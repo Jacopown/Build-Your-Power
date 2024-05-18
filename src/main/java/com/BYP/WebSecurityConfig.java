@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import static org.springframework.security.config.Customizer.withDefaults;
-// import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
  
 @Configuration
 @EnableWebSecurity
@@ -36,27 +35,28 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
-  @Bean
-  SecurityFilterChain configure(HttpSecurity http) throws Exception {
-      //FIXME user not properly logged
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authenticationProvider(authenticationProvider())
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/login", "/register", "/userView").permitAll()
+                //.requestMatchers("/userView").hasRole("USER") // Adjust roles as needed
+                .requestMatchers("/admin").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/userView")//FIXME doesn't redirect to userView
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .permitAll()
+            );
 
-      http.authenticationProvider(authenticationProvider());
-
-      // Configure authorization based on URL patterns and roles
-      http.securityMatcher("/login", "/register").authorizeHttpRequests((authz) -> authz// /, /userView, /userHomepage, /admin hasRole("ADMIN")
-              .anyRequest().denyAll() // Deny access to all other unsecured URLs (optional, for stricter security)
-      );
-
-      // Configure form login with usernameParameter
-      http.formLogin(login -> login
-              .usernameParameter("email")
-              .defaultSuccessUrl("/userView")//FIXME must be adjusted userView.html
-              .permitAll()
-      );
-
-      // Configure logout with logoutSuccessUrl
-      http.logout(logout -> logout.logoutSuccessUrl("/").permitAll());
-
-      return http.build();
-  }
+        return http.build();
+    }
 }
