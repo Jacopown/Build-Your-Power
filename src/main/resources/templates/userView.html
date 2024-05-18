@@ -2,15 +2,15 @@
 <table>
 	<tr>
 		<td>Username:</td>
-		<td><span th:text="${user.username}"></span></td>
+		<td><span th:text="${user.firstName}"></span></td>
 	</tr>
 	<tr>
 		<td>Email:</td>
 		<td><span th:text="${user.email}"></span></td>
 	</tr>
 	<tr>
-		<td>Is Super User:</td>
-		<td><span th:text="${user.isSuperUser}"></span></td>
+		<td>Role:</td>
+		<td><span th:text="${user.role.name}"></span></td>
 	</tr>
 </table>
 </html>
