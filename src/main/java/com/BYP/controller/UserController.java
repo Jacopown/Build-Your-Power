@@ -33,13 +33,13 @@ public class UserController {
   }
 
   @GetMapping("/signup")
-  public String showSignup(Model model) {
+  public String addUserForm(Model model) {
       model.addAttribute("user", new User());
       return "signup_form";
   }
 
   @PostMapping("/process_register")
-  public String processRegister(User user) {
+  public String processRegister(@ModelAttribute User user) {
       BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
       String encodedPassword = passwordEncoder.encode(user.getPassword());
       Role userRole = roleRepository.findByName("ROLE_USER").get();
