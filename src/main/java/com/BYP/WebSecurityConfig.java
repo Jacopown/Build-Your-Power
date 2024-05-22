@@ -40,7 +40,7 @@ public class WebSecurityConfig {
         http
             .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/login", "/register", "/userView").permitAll()
+                .requestMatchers("/login", "/signup", "/userView").permitAll()
                 //.requestMatchers("/userView").hasRole("USER") // Adjust roles as needed
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
