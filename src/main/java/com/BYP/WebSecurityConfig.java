@@ -42,13 +42,13 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/login", "/signup", "/userView", "/process_register").permitAll()
                 //.requestMatchers("/userView").hasRole("USER") // Adjust roles as needed
-                .requestMatchers("/admin").hasRole("ADMIN")
+                .requestMatchers("/admin", "/batteries", "stations").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/userView")//FIXME doesn't redirect to userView
+                .defaultSuccessUrl("/userView")//FIXME not redirecting with first login
                 .permitAll()
             )
             .logout(logout -> logout

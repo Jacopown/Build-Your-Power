@@ -24,8 +24,8 @@
 					<td th:text = "${battery.voltage}"></td>
 					<td th:text = "${battery.temperature}"></td>
 					<td>
-						<div th:if = "${battery.station != null}" th:text = "${battery.station.location}"></div>
-						<div th:if = "${battery.user != null}" th:text = "${battery.user.username}"></div>
+						<div th:if = "${battery.getStation() != null}" th:text = "${battery.getStation().getLocation()}"></div>
+						<div th:if = "${battery.getUser() != null}" th:text = "${battery.getUser().getEmail()}"></div>
 					</td>
 				</tr>
 			</tbody>
