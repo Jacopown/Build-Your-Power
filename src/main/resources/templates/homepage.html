@@ -47,24 +47,24 @@
                     </div>
                 </div>
             </div>
-	    <div class = "col-md-4" th:if="${#security.isAuthenticated() and #authorization.authorize(#this, 'hasRole(''ADMIN'')')}"><!--FIXME-->
-		    <div class = "card">
-			    <div class = "card-body">
-				    <h5 class = "card-title">Batteries</h5>
-				    <p class = "card-text"> Display all Batteries</p>
-				    <a th:href = "@{\batteries}" class = "btn btn-primary"> Show </a>
-			    </div>
-		    </div>
-	    </div>
-	    <div class = "col-md-4" th:if="${#security.isAuthenticated() and #authorization.authorize(#this, 'hasRole(''ADMIN'')')}"> <!--FIXME-->
-		    <div class = "card">
-			    <div class = "card-body">
-				    <h5 class = "card-title">Stations</h5>
-				    <p class = "card-text"> Display all Stations</p>
-				    <a th:href = "@{\stations}" class ="btn btn-primary"> Show </a>
-			    </div>
-		    </div>
-	    </div>
+	    <!-- <div class = "col-md-4" th:if="${#security.isAuthenticated() and #authorization.authorize(#this, 'hasRole(''ADMIN'')')}"><!--FIXME--> -
+		   <!--  <div class = "card"> -->
+			  <!--   <div class = "card-body"> -->
+				 <!--    <h5 class = "card-title">Batteries</h5> -->
+				 <!--    <p class = "card-text"> Display all Batteries</p> -->
+				 <!--    <a th:href = "@{\batteries}" class = "btn btn-primary"> Show </a> -->
+			  <!--   </div> -->
+		   <!--  </div> -->
+	    <!-- </div> -->
+	    <!-- <div class = "col-md-4" th:if="${#security.isAuthenticated() and #authorization.authorize(#this, 'hasRole(''ADMIN'')')}"> <!--FIXME--> 
+		   <!--  <div class = "card"> -->
+			  <!--   <div class = "card-body"> -->
+				 <!--    <h5 class = "card-title">Stations</h5> -->
+				 <!--    <p class = "card-text"> Display all Stations</p> -->
+				 <!--    <a th:href = "@{\stations}" class ="btn btn-primary"> Show </a> -->
+			  <!--   </div> -->
+		   <!--  </div> -->
+	    <!-- </div> -->
             <!-- Add more news cards as needed -->
         </div>
     </div>

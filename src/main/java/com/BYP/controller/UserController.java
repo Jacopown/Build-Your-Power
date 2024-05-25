@@ -62,6 +62,11 @@ public class UserController {
     return "login_form";
   }
 
+  @GetMapping("/admin")
+  public String admin(Model model) {
+    return "adminpage";
+  }
+
   // getting user info (querying by id)
   @GetMapping("/users/{id}")
   public ModelAndView getById(@PathVariable Integer id) {

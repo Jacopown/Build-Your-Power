@@ -49,7 +49,7 @@ public class WebSecurityConfig {
             .formLogin(form -> form
                 .loginPage("/login")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/userView")//FIXME not redirecting with first login
+                .defaultSuccessUrl("/userHomepage")//FIXME not redirecting with first login
                 .permitAll()
             )
             .logout(logout -> logout
