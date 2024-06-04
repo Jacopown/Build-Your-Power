@@ -30,7 +30,7 @@ public class Battery {
   
   // Hibernate expects entities to have a no-arg constructor,
   // though it does not necessarily have to be public.
-  private Battery() {}
+  public Battery() {} //setting it to public for testing purposes
   
   //TODO add the possibility to associate the battery to a station or to a user
   public Battery(BatteryStatus status, Station station, Float voltage, Float temperature) {
