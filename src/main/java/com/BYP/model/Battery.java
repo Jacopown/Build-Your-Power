@@ -86,5 +86,13 @@ public class Battery {
     this.station = station;
     this.user = null;
   }
+
+  public Station getAssignedStation(){
+    return this.station;
+  }
+
+  public User getAssignedUser(){
+    return this.user;
+  }
 }
 
