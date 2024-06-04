@@ -34,7 +34,6 @@ public class DemoApplicationTest{
 	public void testAddBattery(){
 		Battery battery = new Battery();
 		batteryRepository.save(battery);
-		assertEquals(1L, 1L);
-		//assertEquals(batteryRepository.getByID(1).get().getId().longValue(), 1L);
+		assertEquals(batteryRepository.getByID(battery.getId()).get().getId().longValue(), battery.getId().longValue());
 	}
 }
