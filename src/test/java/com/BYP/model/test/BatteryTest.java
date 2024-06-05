@@ -40,7 +40,8 @@ public class BatteryTest{
 		Battery battery = batteryRepository.getByID(1).get();
 		battery.setVoltage(5.0f);
 		float delta = 0.01f;
-		assertEquals((float) battery.getVoltage(), 5.0f, delta);//TODO add label for numbers
+		float expectedVoltage = 5.0f;
+		assertEquals((float) battery.getVoltage(), expectedVoltage, delta);
 	}
 
 	// testing battery's temperature update
@@ -49,7 +50,8 @@ public class BatteryTest{
 		Battery battery = batteryRepository.getByID(1).get();
 		battery.setTemperature(70.0f);
 		float delta = 0.01f;
-		assertEquals((float) battery.getTemperature(), 70.0f, delta);//TODO also here
+		float expectedTemperature = 70.0f;
+		assertEquals((float) battery.getTemperature(), expectedTemperature, delta);
 	}
 
 	// testing battery's assignment update
