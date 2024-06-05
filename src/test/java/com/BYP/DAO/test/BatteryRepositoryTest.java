@@ -24,7 +24,7 @@ import com.BYP.DAO.StationRepository;
 @RunWith(SpringRunner.class)
 // required to create automatically all the necessary classes
 @SpringBootTest
-public class DemoApplicationTest{
+public class BatteryRepositoryTest{
 	
 	@Autowired
 	private BatteryRepository batteryRepository;
