@@ -33,7 +33,6 @@ public class BatteryTest{
 	@Autowired
 	private StationRepository stationRepository;
 
-	//TODO must be added in BatteryTest.java
 	// testing battery's voltage update
 	@Test
 	public void testBatteryUpdateVoltage(){
@@ -55,11 +54,11 @@ public class BatteryTest{
 	}
 
 	// testing battery's assignment update
-	/*@Test
+	@Test
 	public void testBatteryUpdateAssign(){
 		Battery battery = batteryRepository.getByID(1).get();
 		battery.updateAssign(stationRepository.getByID(1).get());
-		assertEquals(battery.getAssignedStation().getLocation(), stationRepository.getByID(1).getLocation());
-	}*/
+		assertEquals(battery.getAssignedStation().getLocation(), stationRepository.getByID(1).get().getLocation());
+	}
 
 }
