@@ -26,46 +26,38 @@ import com.BYP.DAO.StationRepository;
 @RunWith(SpringRunner.class)
 // required to create automatically all the necessary classes
 @SpringBootTest
-public class BatteryRepositoryTest{
+public class BatteryTest{
 	
 	@Autowired
 	private BatteryRepository batteryRepository;
 	@Autowired
 	private StationRepository stationRepository;
 
-	// required in order to create an entityManager object
-	@Mock
-	private EntityManager entityManager;
-
-	// testing creation of a battery
+	//TODO must be added in BatteryTest.java
+	// testing battery's voltage update
 	@Test
-	public void testAddBattery(){
-		Battery battery = new Battery();
-		batteryRepository.save(battery);
-		assertEquals(batteryRepository.getByID(battery.getId()).get().getId().longValue(), battery.getId().longValue());
-	}
-
-	// testing battery's status update
-	@Test
-	public void testBatteryUpdateStatus(){
+	public void testBatteryUpdateVoltage(){
 		Battery battery = batteryRepository.getByID(1).get();
-		batteryRepository.update(battery, new String[]{"DAMAGED"});
-		String expectedStatus = "DAMAGED";
-		assertEquals(battery.getStatus().name(), expectedStatus);
+		battery.setVoltage(5.0f);
+		float delta = 0.01f;
+		assertEquals((float) battery.getVoltage(), 5.0f, delta);//TODO add label for numbers
 	}
 
-	// testing battery delete
-	// FIXME
-	/*
+	// testing battery's temperature update
 	@Test
-	public void testDeleteBattery(){
+	public void testBatteryUpdateTemperature(){
 		Battery battery = batteryRepository.getByID(1).get();
-		Integer batteryId = battery.getId();
-		batteryRepository.merge(battery);
-		batteryRepository.delete(battery);
-		Optional<Battery> deletedBattery = batteryRepository.getByID(batteryId);
-		assertFalse(deletedBattery.isPresent());
+		battery.setTemperature(70.0f);
+		float delta = 0.01f;
+		assertEquals((float) battery.getTemperature(), 70.0f, delta);//TODO also here
 	}
-	*/
+
+	// testing battery's assignment update
+	/*@Test
+	public void testBatteryUpdateAssign(){
+		Battery battery = batteryRepository.getByID(1).get();
+		battery.updateAssign(stationRepository.getByID(1).get());
+		assertEquals(battery.getAssignedStation().getLocation(), stationRepository.getByID(1).getLocation());
+	}*/
 
 }
