@@ -1,9 +1,7 @@
 package com.BYP.model;
 
-import java.util.*;
 import jakarta.persistence.*;
 import com.BYP.Role;
-
 
 @Entity
 @Table(name = "users")
@@ -12,29 +10,30 @@ public class User {
   @Id
   @Column(name = "user_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Integer id;
 
   @Column(nullable = false, unique = true, length = 45)
   private String email;
 
   @Column(nullable = false, length = 64)
   private String password;
-  
+
   @Column(nullable = false, length = 20)
   private String firstName;
 
   @Column(nullable = false, length = 20)
   private String lastName;
 
-  // @ManyToOne(cascade = CascadeType.PERSIST)  
-  @ManyToOne()  
+  // @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne()
   @JoinColumn(name = "role_id")
-  private Role role; 
-  
+  private Role role;
+
   // Hibernate expects entities to have a no-arg constructor,
   // though it does not necessarily have to be public.
-  public User() {}
-  
+  public User() {
+  }
+
   public User(String email, String password, String firstName, String lastName, Role role) {
     this.email = email;
     this.password = password;
@@ -43,14 +42,14 @@ public class User {
     this.role = role;
   }
 
-  public Long getId() {
+  public Integer getId() {
     return this.id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
-  
+
   public String getEmail() {
     return this.email;
   }
@@ -58,7 +57,6 @@ public class User {
   public void setEmail(String email) {
     this.email = email;
   }
-
 
   public String getPassword() {
     return this.password;
@@ -92,4 +90,3 @@ public class User {
     return this.role;
   }
 }
-

@@ -1,7 +1,7 @@
 package com.BYP;
- 
+
 import jakarta.persistence.*;
- 
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -9,21 +9,23 @@ public class Role {
   @Id
   @Column(name = "role_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-   
+  private Integer id;
+
   @Column(nullable = false, unique = true)
   private String name;
-  
-  public Role() {}
+
+  public Role() {
+  }
 
   public Role(String name) {
     this.name = name;
   }
-  public Long getId() {
-      return id;
+
+  public Integer getId() {
+    return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
