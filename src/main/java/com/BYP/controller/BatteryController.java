@@ -1,6 +1,5 @@
 package com.BYP.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,6 @@ public class BatteryController {
 
   private final BatteryRepository batteryRepository;
 
-  @Autowired
   public BatteryController(BatteryRepository batteryRepository) {
     this.batteryRepository = batteryRepository;
   }
@@ -25,10 +23,10 @@ public class BatteryController {
     return modelAndView;
   }
 
-  /*@PostMapping("/batteries")
-  public Battery addOneEmployee(@RequestBody Battery battery) {
-    return this.batteryRepository.save(battery);
-  }*/
+  /*
+   * @PostMapping("/batteries")
+   * public Battery addOneEmployee(@RequestBody Battery battery) {
+   * return this.batteryRepository.save(battery);
+   * }
+   */
 }
-
-

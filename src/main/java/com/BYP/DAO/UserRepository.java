@@ -1,5 +1,5 @@
 package com.BYP.DAO;
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Objects;
@@ -12,10 +12,9 @@ import jakarta.persistence.EntityManager;
 import java.util.Optional;
 import java.util.List;
 
-
 @Repository
-public class UserRepository implements daoInterface<User>{
-	
+public class UserRepository implements daoInterface<User> {
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -28,10 +27,11 @@ public class UserRepository implements daoInterface<User>{
 	public List<User> getAll() {
 		return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
 	}
-	
+
 	public Optional<User> findByEmail(String email) {
-      		return Optional.ofNullable((User)entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email").setParameter("email", email).getSingleResult());
-     	}
+		return Optional.ofNullable((User) entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email")
+				.setParameter("email", email).getSingleResult());
+	}
 
 	@Override
 	@Transactional
@@ -52,16 +52,16 @@ public class UserRepository implements daoInterface<User>{
 		entityManager.remove(user);
 	}
 
-  	public boolean existsByEmail(String email) {
-    		Object result = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.email = :email")
-      			.setParameter("email", email)
-      			.getSingleResult();
-    		// Check if the result is indeed a Long (recommended for more general cases)
-    		if (result instanceof Long) {
-      			return (Long) result != 0L;
-    		} else {
-      			// Handle unexpected result type (unlikely in this case, but good practice)
-      			throw new IllegalStateException("Unexpected result type from query: " + result.getClass());
-    		}
-  	}
+	public boolean existsByEmail(String email) {
+		Object result = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.email = :email")
+				.setParameter("email", email)
+				.getSingleResult();
+		// Check if the result is indeed a Long (recommended for more general cases)
+		if (result instanceof Long) {
+			return (Long) result != 0L;
+		} else {
+			// Handle unexpected result type (unlikely in this case, but good practice)
+			throw new IllegalStateException("Unexpected result type from query: " + result.getClass());
+		}
+	}
 }

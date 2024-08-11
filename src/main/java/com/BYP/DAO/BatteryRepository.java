@@ -15,11 +15,9 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 
-
-
 @Repository
-public class BatteryRepository implements daoInterface<Battery>{
-	
+public class BatteryRepository implements daoInterface<Battery> {
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -43,7 +41,6 @@ public class BatteryRepository implements daoInterface<Battery>{
 	@Transactional
 	public void update(Battery battery, String[] params) {
 		battery.setStatus(Objects.requireNonNull(BatteryStatus.valueOf(params[0]), "Status cannot be null"));
-		//TODO maybe add more fields to update
 		entityManager.merge(battery);
 	}
 
@@ -53,15 +50,15 @@ public class BatteryRepository implements daoInterface<Battery>{
 		entityManager.remove(battery);
 	}
 
-	//switching between station and user
-	//battery assignment
+	// switching between station and user
+	// battery assignment
 	@Transactional
 	public void switchAssignment(Battery battery, User user) {
 		battery.updateAssign(user);
 		entityManager.merge(battery);
 	}
 
-	//station assignment
+	// station assignment
 	@Transactional
 	public void switchAssignment(Battery battery, Station station) {
 		battery.updateAssign(station);

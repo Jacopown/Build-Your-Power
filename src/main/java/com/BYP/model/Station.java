@@ -1,9 +1,6 @@
 package com.BYP.model;
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "stations")
@@ -13,19 +10,21 @@ public class Station {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   private String location;
-  
+
   // Hibernate expects entities to have a no-arg constructor,
   // though it does not necessarily have to be public.
-  private Station() {}
-  
-  public Station(String location){
+  @SuppressWarnings("unused")
+  private Station() {
+  }
+
+  public Station(String location) {
     this.location = location;
   }
 
   public Integer getId() {
     return this.id;
   }
-  
+
   public String getLocation() {
     return this.location;
   }
@@ -34,4 +33,3 @@ public class Station {
     this.location = location;
   }
 }
-

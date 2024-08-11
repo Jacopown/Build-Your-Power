@@ -9,13 +9,15 @@ public class Battery {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
-  public enum BatteryStatus{ 
+
+  public enum BatteryStatus {
     AVAILABLE,
     UNAVAILABLE,
     DAMAGED,
     UNREACHABLE
   }
-  //adding relation between battery and station
+
+  // adding relation between battery and station
   @ManyToOne
   @JoinColumn(name = "station_id")
   private Station station;
@@ -27,12 +29,12 @@ public class Battery {
   private BatteryStatus status;
   private Float voltage;
   private Float temperature;
-  
+
   // Hibernate expects entities to have a no-arg constructor,
   // though it does not necessarily have to be public.
-  public Battery() {} //setting it to public for testing purposes
-  
-  //TODO add the possibility to associate the battery to a station or to a user
+  public Battery() {
+  } // setting it to public for testing purposes
+
   public Battery(BatteryStatus status, Station station, Float voltage, Float temperature) {
     this.status = status;
     this.station = station;
@@ -44,14 +46,15 @@ public class Battery {
   public Integer getId() {
     return this.id;
   }
-  
+
   public BatteryStatus getStatus() {
     return this.status;
   }
 
   public void setStatus(BatteryStatus status) {
     this.status = status;
-  } 
+  }
+
   public Station getStation() {
     return this.station;
   }
@@ -67,7 +70,7 @@ public class Battery {
   public Float getTemperature() {
     return this.temperature;
   }
-  
+
   public void setTemperature(Float temperature) {
     this.temperature = temperature;
   }
@@ -76,7 +79,7 @@ public class Battery {
     return this.user;
   }
 
-  //overloading the updateAssign method to update the battery's assignation
+  // overloading the updateAssign method to update the battery's assignation
   public void updateAssign(User user) {
     this.user = user;
     this.station = null;
@@ -87,12 +90,11 @@ public class Battery {
     this.user = null;
   }
 
-  public Station getAssignedStation(){
+  public Station getAssignedStation() {
     return this.station;
   }
 
-  public User getAssignedUser(){
+  public User getAssignedUser() {
     return this.user;
   }
 }
-
