@@ -1,22 +1,10 @@
 package com.BYP.BYP.test;
 
-import java.util.Optional;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import jakarta.persistence.EntityManager;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-
-
-import static org.mockito.Mockito.when;
 import static org.junit.Assert.*;
 
 import com.BYP.DAO.BatteryRepository;
@@ -26,8 +14,8 @@ import com.BYP.DAO.StationRepository;
 @RunWith(SpringRunner.class)
 // required to create automatically all the necessary classes
 @SpringBootTest
-public class BatteryTest{
-	
+public class BatteryTest {
+
 	@Autowired
 	private BatteryRepository batteryRepository;
 	@Autowired
@@ -35,7 +23,7 @@ public class BatteryTest{
 
 	// testing battery's voltage update
 	@Test
-	public void testBatteryUpdateVoltage(){
+	public void testBatteryUpdateVoltage() {
 		Battery battery = batteryRepository.getByID(1).get();
 		battery.setVoltage(5.0f);
 		float delta = 0.01f;
@@ -45,7 +33,7 @@ public class BatteryTest{
 
 	// testing battery's temperature update
 	@Test
-	public void testBatteryUpdateTemperature(){
+	public void testBatteryUpdateTemperature() {
 		Battery battery = batteryRepository.getByID(1).get();
 		battery.setTemperature(70.0f);
 		float delta = 0.01f;
@@ -55,7 +43,7 @@ public class BatteryTest{
 
 	// testing battery's assignment update
 	@Test
-	public void testBatteryUpdateAssign(){
+	public void testBatteryUpdateAssign() {
 		Battery battery = batteryRepository.getByID(1).get();
 		battery.updateAssign(stationRepository.getByID(1).get());
 		assertEquals(battery.getAssignedStation().getLocation(), stationRepository.getByID(1).get().getLocation());
